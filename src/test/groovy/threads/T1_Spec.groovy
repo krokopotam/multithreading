@@ -30,8 +30,8 @@ class T1_Spec extends Specification {
         given:
             Thread thread = new Thread(new MyRunnable())
         when:
-            thread.start()
-        then:
+        thread.start()
+            then:
             noExceptionThrown()
 
     }
@@ -41,6 +41,17 @@ class T1_Spec extends Specification {
             Thread thread = new Thread(new MyRunnable(), "My unique name")
         when:
             thread.start()
+        then:
+            println thread.getName()
+            noExceptionThrown()
+    }
+
+    def "Thread 4 example"() {
+        given:
+        when:
+        for (int i = 0; i < 10; i++) {
+            new Thread(new MyRunnable(), "My unique name " + i).start()
+        }
         then:
             noExceptionThrown()
     }

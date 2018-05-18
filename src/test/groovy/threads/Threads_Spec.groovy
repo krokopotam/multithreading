@@ -2,7 +2,7 @@ package threads
 
 import spock.lang.Specification
 
-class T1_Spec extends Specification {
+class Threads_Spec extends Specification {
 
     static class MyThread extends Thread {
         void run() {

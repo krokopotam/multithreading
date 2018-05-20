@@ -85,6 +85,7 @@ class Synchronization_Spec extends Specification {
         when:
             for (int i = 0; i < 10; i++) {
                 Thread thr = new Thread(new MyRunnableWithSums(sums), "My unique name " + i)
+                list.add(thr)
                 thr.start()
             }
             for(Thread thread : list) {
@@ -104,6 +105,7 @@ class Synchronization_Spec extends Specification {
         when:
         for (int i = 0; i < 10; i++) {
             Thread thr = new Thread(new MyRunnableWithSums(sums), "My unique name " + i)
+            list.add(thr)
             thr.start()
         }
         for(Thread thread : list) {

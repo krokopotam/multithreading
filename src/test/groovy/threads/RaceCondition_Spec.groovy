@@ -28,10 +28,10 @@ class RaceCondition_Spec extends Specification {
     }
 
     class NotThreadSafe{
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder()
 
         public add(String text){
-            this.builder.append(text);
+            this.builder.append(text)
         }
     }
 
@@ -48,4 +48,15 @@ class RaceCondition_Spec extends Specification {
             noExceptionThrown()
     }
 
+    def "No race condition example"() {
+        given:
+            Thread thread1 = new Thread(new MyRunnable(new NotThreadSafe()))
+            Thread thread2 = new Thread(new MyRunnable(new NotThreadSafe()))
+
+        when:
+            thread1.start()
+            thread2.start()
+        then:
+            noExceptionThrown()
+    }
 }

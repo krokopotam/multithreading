@@ -91,7 +91,9 @@ class Synchronization_Spec extends Specification {
             for(Thread thread : list) {
                 thread.join()
             }
+            println "test"
         then:
+            println "koniec"
             sums.sum1 == 10
             sums.sum2 == 10
     }
